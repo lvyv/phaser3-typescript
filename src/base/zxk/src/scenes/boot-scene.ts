@@ -50,8 +50,7 @@ export class BootScene extends Phaser.Scene {
     // load zxk map and spirites
     this.load.image("tileset", "./assets/tilesets/map-tileset.png");
     this.load.tilemapTiledJSON("zxkmap", "../assets/tilemaps/map3.json");
-    this.load.atlas("atlas", "./assets/atlas/agv.png", "../assets/atlas/agv.json");
-    
+    this.load.atlas("atlas","./assets/atlas/agv.png" , "../assets/atlas/agv.json");
   }
 
   update(): void {

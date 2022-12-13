@@ -150,7 +150,7 @@ export class GameScene extends Phaser.Scene {
       this.scene.start('MenuScene');
     }
   }
-
+  /* instantialize objects in the map */
   private convertObjects(): void {
     // find the object layer in the tilemap named 'objects'
     const objects = this.zxkmap.getObjectLayer('objects').objects as any[];
@@ -159,12 +159,14 @@ export class GameScene extends Phaser.Scene {
       let udfProps = object['properties']
       if (udfProps) {
         udfProps.forEach((prop: any) => {
-          if (prop.name === 'type' && prop.value === 'player') {
+          if (prop.name === 'type' && prop.value === 'player') {          
             this.player = new Player({
               scene: this,
               x: object.x,
               y: object.y,
-              texture: 'tankBlue'
+              // texture: 'tankBlue'
+              texture: 'atlas',
+              frame: 'agv/up/0001'
             });
           } else if (prop.name === 'type' && prop.value === 'enemy') {
             let enemy = new Enemy({
@@ -174,6 +176,7 @@ export class GameScene extends Phaser.Scene {
               texture: 'tankRed'
             });
             this.enemies.add(enemy);
+            enemy.body.setFriction(1);
           } else {
             let obstacle = new Obstacle({
               scene: this,

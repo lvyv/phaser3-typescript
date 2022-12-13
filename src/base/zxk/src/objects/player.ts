@@ -3,13 +3,13 @@ import { IImageConstructor } from '../interfaces/image.interface';
 
 export class Player extends Phaser.GameObjects.Image {
   body: Phaser.Physics.Arcade.Body;
-
   // variables
   private health: number;
   private lastShoot: number;
   private speed: number;
 
   // children
+  // private agvbody: Phaser.GameObjects.Sprite;
   private barrel: Phaser.GameObjects.Image;
   private lifeBar: Phaser.GameObjects.Graphics;
 
@@ -28,11 +28,9 @@ export class Player extends Phaser.GameObjects.Image {
 
   constructor(aParams: IImageConstructor) {
     super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
-
     this.initImage();
     this.scene.add.existing(this);
   }
-
   private initImage() {
     // variables
     this.health = 1;
@@ -60,6 +58,53 @@ export class Player extends Phaser.GameObjects.Image {
       runChildUpdate: true
     });
 
+    // this.agvbody = this.scene.add.sprite(this.x, this.y, "atlas", "agv/down/0001");
+    const anims = this.scene.anims;
+    anims.create({
+      key: "agv-down",
+      frames: anims.generateFrameNames("atlas", {
+        prefix: "agv/down/",
+        start: 1,
+        end: 4,
+        zeroPad: 4,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+    anims.create({
+      key: "agv-left",
+      frames: anims.generateFrameNames("atlas", {
+        prefix: "agv/left/",
+        start: 1,
+        end: 4,
+        zeroPad: 4,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+    anims.create({
+      key: "agv-right",
+      frames: anims.generateFrameNames("atlas", {
+        prefix: "agv/right/",
+        start: 1,
+        end: 4,
+        zeroPad: 4,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+    anims.create({
+      key: "agv-up",
+      frames: anims.generateFrameNames("atlas", {
+        prefix: "agv/up/",
+        start: 1,
+        end: 4,
+        zeroPad: 4,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+    // this.agvbody.anims.play('agv-up',true)
     // input
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.rotateKeyLeft = this.scene.input.keyboard.addKey(
@@ -75,10 +120,13 @@ export class Player extends Phaser.GameObjects.Image {
 
     // physics
     this.scene.physics.world.enable(this);
+
   }
 
   update(): void {
     if (this.active) {
+      // this.agvbody.x = this.x;
+      // this.agvbody.y = this.y;
       this.barrel.x = this.x;
       this.barrel.y = this.y;
       this.lifeBar.x = this.x;
@@ -96,6 +144,7 @@ export class Player extends Phaser.GameObjects.Image {
     // move tank forward
     // small corrections with (- MATH.PI / 2) to align tank correctly
     if (this.cursors.up.isDown) {
+      /* 给出角度与大小，求出速度矢量 */
       this.scene.physics.velocityFromRotation(
         this.rotation - Math.PI / 2,
         this.speed,
@@ -124,6 +173,13 @@ export class Player extends Phaser.GameObjects.Image {
     } else if (this.rotateKeyRight.isDown) {
       this.barrel.rotation += 0.05;
     }
+
+    //show animations of the sprite
+    // if(this.cursors.left.isDown) this.agvbody.anims.play('agv-left', true);
+    // else if(this.cursors.right.isDown) this.agvbody.anims.play('agv-right', true);
+    // else if(this.cursors.up.isDown) this.agvbody.anims.play('agv-up', true);
+    // else if(this.cursors.down.isDown) this.agvbody.anims.play('agv-down',true);
+    // else this.agvbody.anims.stop();
   }
 
   private handleShooting(): void {

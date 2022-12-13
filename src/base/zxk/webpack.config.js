@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: './src/game.ts',
@@ -8,6 +10,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.png/,
+        type: 'asset/resource'
+      },
       {
         test: /\.ts$/,
         include: path.resolve(__dirname, 'src'),
@@ -28,12 +34,27 @@ module.exports = {
     ]
   },
   devServer: {
-    static: path.resolve(__dirname, './'),
+    static: path.resolve(__dirname, './dist'),
     host: 'localhost',
     port: 8080,
-    open: false
+    open: false,
+    hot: true
   },
   resolve: {
     extensions: ['.ts', '.js']
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "assets/",
+          to: "assets/",
+        },
+      ],
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './index.html'),
+      inject: 'head'
+    })
+  ]
 };
