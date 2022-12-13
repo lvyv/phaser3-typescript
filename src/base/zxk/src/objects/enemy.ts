@@ -56,18 +56,18 @@ export class Enemy extends Phaser.GameObjects.Image {
     });
 
     // tweens
-    this.scene.tweens.add({
-      targets: this,
-      props: { y: this.y - 200 },
-      delay: 0,
-      duration: 2000,
-      ease: 'Linear',
-      easeParams: null,
-      hold: 0,
-      repeat: -1,
-      repeatDelay: 0,
-      yoyo: true
-    });
+    // this.scene.tweens.add({
+    //   targets: this,
+    //   props: { y: this.y - 200 },
+    //   delay: 0,
+    //   duration: 2000,
+    //   ease: 'Linear',
+    //   easeParams: null,
+    //   hold: 0,
+    //   repeat: -1,
+    //   repeatDelay: 0,
+    //   yoyo: true
+    // });
 
     // physics
     this.scene.physics.world.enable(this);
@@ -79,7 +79,7 @@ export class Enemy extends Phaser.GameObjects.Image {
       this.barrel.y = this.y;
       this.lifeBar.x = this.x;
       this.lifeBar.y = this.y;
-      this.handleShooting();
+      // this.handleShooting(); // not allowed shooting for debug reason.
     } else {
       this.destroy();
       this.barrel.destroy();
@@ -107,7 +107,7 @@ export class Enemy extends Phaser.GameObjects.Image {
 
   private redrawLifebar(): void {
     this.lifeBar.clear();
-    this.lifeBar.fillStyle(0xe66a28, 1);
+    this.lifeBar.fillStyle(0x0cad00, 1);
     this.lifeBar.fillRect(
       -this.width / 2,
       this.height / 2,
