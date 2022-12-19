@@ -40,7 +40,7 @@ export class Enemy extends Phaser.GameObjects.Image {
     // image
     this.setDepth(0);
 
-    this.barrel = this.scene.add.image(0, 0, 'barrelRed');
+    this.barrel = this.scene.add.image(0, 0, 'barrelBlue');
     this.barrel.setOrigin(0.5, 1);
     this.barrel.setDepth(1);
 

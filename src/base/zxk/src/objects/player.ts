@@ -10,7 +10,7 @@ export class Player extends Phaser.GameObjects.Image {
 
   // children
   // private agvbody: Phaser.GameObjects.Sprite;
-  private barrel: Phaser.GameObjects.Image;
+  // private barrel: Phaser.GameObjects.Image;
   private lifeBar: Phaser.GameObjects.Graphics;
 
   // game objects
@@ -39,13 +39,13 @@ export class Player extends Phaser.GameObjects.Image {
 
     // image
     this.setOrigin(0.5, 0.5);
-    this.setDepth(0);
+    this.setDepth(10);
     this.angle = 180;
 
-    this.barrel = this.scene.add.image(this.x, this.y, 'barrelBlue');
-    this.barrel.setOrigin(0.5, 1);
-    this.barrel.setDepth(1);
-    this.barrel.angle = 180;
+    // this.barrel = this.scene.add.image(this.x, this.y, 'barrelBlue');
+    // this.barrel.setOrigin(0.5, 1);
+    // this.barrel.setDepth(1);
+    // this.barrel.angle = 180;
 
     this.lifeBar = this.scene.add.graphics();
     this.redrawLifebar();
@@ -127,15 +127,15 @@ export class Player extends Phaser.GameObjects.Image {
     if (this.active) {
       // this.agvbody.x = this.x;
       // this.agvbody.y = this.y;
-      this.barrel.x = this.x;
-      this.barrel.y = this.y;
+      // this.barrel.x = this.x;
+      // this.barrel.y = this.y;
       this.lifeBar.x = this.x;
       this.lifeBar.y = this.y;
       this.handleInput();
-      this.handleShooting();
+      // this.handleShooting();
     } else {
       this.destroy();
-      this.barrel.destroy();
+      // this.barrel.destroy();
       this.lifeBar.destroy();
     }
   }
@@ -167,12 +167,12 @@ export class Player extends Phaser.GameObjects.Image {
       this.rotation += 0.02;
     }
 
-    // rotate barrel
-    if (this.rotateKeyLeft.isDown) {
-      this.barrel.rotation -= 0.05;
-    } else if (this.rotateKeyRight.isDown) {
-      this.barrel.rotation += 0.05;
-    }
+    // // rotate barrel
+    // if (this.rotateKeyLeft.isDown) {
+    //   this.barrel.rotation -= 0.05;
+    // } else if (this.rotateKeyRight.isDown) {
+    //   this.barrel.rotation += 0.05;
+    // }
 
     //show animations of the sprite
     // if(this.cursors.left.isDown) this.agvbody.anims.play('agv-left', true);
@@ -182,38 +182,38 @@ export class Player extends Phaser.GameObjects.Image {
     // else this.agvbody.anims.stop();
   }
 
-  private handleShooting(): void {
-    if (this.shootingKey.isDown && this.scene.time.now > this.lastShoot) {
-      this.scene.cameras.main.shake(20, 0.005);
-      this.scene.tweens.add({
-        targets: this,
-        props: { alpha: 0.8 },
-        delay: 0,
-        duration: 5,
-        ease: 'Power1',
-        easeParams: null,
-        hold: 0,
-        repeat: 0,
-        repeatDelay: 0,
-        yoyo: true,
-        paused: false
-      });
+  // private handleShooting(): void {
+  //   if (this.shootingKey.isDown && this.scene.time.now > this.lastShoot) {
+  //     this.scene.cameras.main.shake(20, 0.005);
+  //     this.scene.tweens.add({
+  //       targets: this,
+  //       props: { alpha: 0.8 },
+  //       delay: 0,
+  //       duration: 5,
+  //       ease: 'Power1',
+  //       easeParams: null,
+  //       hold: 0,
+  //       repeat: 0,
+  //       repeatDelay: 0,
+  //       yoyo: true,
+  //       paused: false
+  //     });
 
-      if (this.bullets.getLength() < 10) {
-        this.bullets.add(
-          new Bullet({
-            scene: this.scene,
-            rotation: this.barrel.rotation,
-            x: this.barrel.x,
-            y: this.barrel.y,
-            texture: 'bulletBlue'
-          })
-        );
+  //     if (this.bullets.getLength() < 10) {
+  //       this.bullets.add(
+  //         new Bullet({
+  //           scene: this.scene,
+  //           rotation: this.barrel.rotation,
+  //           x: this.barrel.x,
+  //           y: this.barrel.y,
+  //           texture: 'bulletBlue'
+  //         })
+  //       );
 
-        this.lastShoot = this.scene.time.now + 80;
-      }
-    }
-  }
+  //       this.lastShoot = this.scene.time.now + 80;
+  //     }
+  //   }
+  // }
 
   private redrawLifebar(): void {
     this.lifeBar.clear();
@@ -226,7 +226,7 @@ export class Player extends Phaser.GameObjects.Image {
     );
     this.lifeBar.lineStyle(2, 0xffffff);
     this.lifeBar.strokeRect(-this.width / 2, this.height / 2, this.width, 15);
-    this.lifeBar.setDepth(1);
+    this.lifeBar.setDepth(11);
   }
 
   public updateHealth(): void {
