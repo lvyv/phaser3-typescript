@@ -44,6 +44,16 @@
       },
       {
         "type": "image",
+        "key": "start",
+        "url": "./assets/sprites/start.png"
+      },
+      {
+        "type": "image",
+        "key": "end",
+        "url": "./assets/sprites/end.png"
+      },
+      {
+        "type": "image",
         "key": "tiles",
         "url": "./assets/tiles/tiles.png"
       },

@@ -1,14 +1,11 @@
 import { Player } from '../objects/player';
 import { Enemy } from '../objects/enemy';
 import { Agv } from '../objects/agv'
+import { TaskIndicator } from '../objects/taskindicator';
 import { Obstacle } from '../objects/obstacles/obstacle';
 import { Bullet } from '../objects/bullet';
 import { FBDInputHandler } from '../interfaces/FBDInputHandler';
 import { Body } from 'matter';
-
-function getRand(max: number, min: number) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
 
 function pathManager(jsoncache: any, physics: Phaser.Physics.Arcade.ArcadePhysics = null, agvs: Phaser.GameObjects.Group = null, graphics: Phaser.GameObjects.Graphics = null) {
   // jsoncache保存的载入json是后台生成路径，直接生成path路径到dist文件
@@ -76,6 +73,7 @@ export class GameScene extends Phaser.Scene {
   private player: Player;
   private enemies: Phaser.GameObjects.Group;
   private agvs: Phaser.GameObjects.Group;
+  private tasks: Phaser.GameObjects.Group;
   private obstacles: Phaser.GameObjects.Group;
 
   private target: Phaser.Math.Vector2;
@@ -118,11 +116,34 @@ export class GameScene extends Phaser.Scene {
     });
     this.convertObjects();
 
+    // create some tasks.
+    var start = this.add.image(0, 0, 'start');
+    // var end = this.add.image(0, 0, 'end');
+    var container = this.add.container(7800, 4000, [ start ]);
+    container.setSize(start.width, start.height);
+    container.setInteractive();
+    this.input.setDraggable(container);
+    container.on('pointerover', function () {
+        start.setTint(0x44ff44);
+
+    });
+    container.on('pointerout', function () {
+        start.clearTint();
+    });
+    this.input.on('drag', function (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Image, dragX: number, dragY: number) {
+      gameObject.x = dragX;
+      gameObject.y = dragY;
+      console.log('x,y:', dragX, dragY);
+    });
+    
+
+
+
     // collider layer and obstacles
     this.physics.add.collider(this.player, this.layer);
     this.physics.add.collider(this.player, this.obstacles);
     this.physics.add.collider(this.player, this.enemies);
-    this.physics.add.collider(this.player, this.agvs);
+    // this.physics.add.collider(this.player, this.agvs);
 
     // collider for bullets
     this.physics.add.collider(
@@ -174,11 +195,13 @@ export class GameScene extends Phaser.Scene {
     this.gfx = this.add.graphics();
     pathManager(this.cache, this.physics, this.agvs, this.gfx);
 
-
     // set viewpoint    
     this.cameras.main.startFollow(this.player);
     let cam = this.cameras.main;
     cam.setBounds(0, 0, this.zxkmap.widthInPixels, this.zxkmap.heightInPixels);
+
+
+
   }
 
   update(): void {
@@ -248,7 +271,7 @@ export class GameScene extends Phaser.Scene {
               y: object.y,
               texture: 'tankBlue',
               // texture: 'atlas',
-              frame: 'agv/up/0001'
+              // frame: 'agv/up/0001'
             });
           } else if (prop.name === 'type' && prop.value === 'camera') {
             let enemy = new Enemy({
@@ -285,12 +308,6 @@ export class GameScene extends Phaser.Scene {
       }
     });
   }
-  /* draw scheduled path */
-  // private drawPath(): void {
-  //   let curve = pathManager();
-  //   this.gfx.lineStyle(1, 0xffffff, 1);
-  //   curve.draw(this.gfx, 64);
-  // }
 
   private bulletHitLayer(bullet: Bullet): void {
     bullet.destroy();
