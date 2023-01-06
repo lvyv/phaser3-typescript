@@ -36,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/lvyv/phaser3-typescript/issues"
   },
-  "homepage": "https://github.com/lvyv/phaser3-typescript#readme"
+  "homepage": "https://github.com/lvyv/phaser3-typescript#readme",
+  "dependencies": {
+    "phaser3-rex-plugins": "^1.1.79"
+  }
 }

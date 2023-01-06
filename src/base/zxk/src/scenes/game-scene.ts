@@ -7,6 +7,7 @@ import { Bullet } from '../objects/bullet';
 import { FBDInputHandler } from '../interfaces/FBDInputHandler';
 import { Body } from 'matter';
 
+
 function pathManager(jsoncache: any, physics: Phaser.Physics.Arcade.ArcadePhysics = null, agvs: Phaser.GameObjects.Group = null, graphics: Phaser.GameObjects.Graphics = null) {
   // jsoncache保存的载入json是后台生成路径，直接生成path路径到dist文件
   // 此处解析文件，得到所有求出的路径
@@ -93,6 +94,8 @@ export class GameScene extends Phaser.Scene {
 
   init(): void { }
 
+
+
   create(): void {
     this.zxkmap = this.make.tilemap({ key: 'zxkmap' });
     // this.tileset = this.zxkmap.addTilesetImage("map3", "tileset");
@@ -135,7 +138,17 @@ export class GameScene extends Phaser.Scene {
       gameObject.y = dragY;
       console.log('x,y:', dragX, dragY);
     });
-    
+    this.input.keyboard.on('keydown-' + 'S', function (event: KeyboardEvent) {
+       /* ... */ 
+      console.log(event);
+      this.scene.pause('GameScene');
+      this.scene.launch('MenuScene');
+      }, this);
+    this.input.keyboard.on('keydown-' + 'R', function (event: KeyboardEvent) {
+       /* ... */ 
+      console.log(event);
+      this.scene.resume('GameScene');
+      }, this);
 
 
 
@@ -199,9 +212,6 @@ export class GameScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     let cam = this.cameras.main;
     cam.setBounds(0, 0, this.zxkmap.widthInPixels, this.zxkmap.heightInPixels);
-
-
-
   }
 
   update(): void {
