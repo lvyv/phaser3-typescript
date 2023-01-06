@@ -25,7 +25,7 @@
   </sub>
 </p>
 
-# Phaser 3 and TypeScript
+# 许多typescript游戏例子
 
 [Phaser](https://github.com/photonstorm/phaser) is a wonderful, fast and
 free open source HTML5 game framework.
