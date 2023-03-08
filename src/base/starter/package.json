@@ -1,7 +1,7 @@
 {
-  "name": "tank",
+  "name": "visualization",
   "version": "2.0.0",
-  "description": "Tank for Phaser 3 in TypeScript",
+  "description": "Visualization for Phaser 3 in TypeScript",
   "keywords": [],
   "devDependencies": {
     "expose-loader": "4.0.0",
@@ -19,15 +19,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/digitsensitive/phaser3-typescript.git"
+    "url": "git+https://github.com/lvyu/phaser3-typescript.git"
   },
   "author": {
-    "name": "digitsensitive",
-    "email": "digit.sensitivee@gmail.com"
+    "name": "lvyv",
+    "email": "26896225@qq.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/digitsensitive/phaser3-typescript/issues"
+    "url": "https://github.com/lvyv/phaser3-typescript/issues"
   },
-  "homepage": "https://github.com/digitsensitive/phaser3-typescript#readme"
+  "homepage": "https://github.com/lvyv/phaser3-typescript#readme"
 }

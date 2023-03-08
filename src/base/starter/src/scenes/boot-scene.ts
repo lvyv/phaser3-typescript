@@ -39,8 +39,6 @@ export class BootScene extends Phaser.Scene {
       this
     );
 
-    // load our package
-    this.load.pack('preload', './assets/pack.json', 'preload');
 
     // 载入数据
     this.load.image('tiles', './assets/visualization/drawtiles-spaced.png');
@@ -49,7 +47,7 @@ export class BootScene extends Phaser.Scene {
   }
 
   update(): void {
-    this.scene.start('MenuScene');
+    this.scene.start('GameScene');
   }
 
   private createLoadingGraphics(): void {
