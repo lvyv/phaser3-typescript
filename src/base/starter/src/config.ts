@@ -4,7 +4,7 @@ import { MenuScene } from './scenes/menu-scene';
 
 export const GameConfig: Phaser.Types.Core.GameConfig = {
   title: 'Tank',
-  url: 'https://github.com/digitsensitive/phaser3-typescript',
+  url: 'https://github.com/lvyv/phaser3-typescript',
   version: '2.0',
   type: Phaser.AUTO,
   width: 820,

@@ -8,6 +8,7 @@
 
 ```
 下载并安装nodeJs 14.21.3。
+npm install -g yarn
 ```
 
 ### 安装和运行
@@ -16,15 +17,9 @@
 
 ```
 git clone https://github.com/lvyv/phaser3-typescript.git
-npm install -g yarn
 npm install
 npm run start
 ```
-
-## 
-
-- [Webpack Boilerplate](https://github.com/digitsensitive/phaser3-typescript/blob/master/src/boilerplates/webpack-boilerplate)
-- [Parcel Boilerplate](https://github.com/digitsensitive/phaser3-typescript/blob/master/src/boilerplates/parcel-boilerplate)
 
 ## 贡献
 
