@@ -21,7 +21,7 @@
     "prettier": "2.3.2"
   },
   "scripts": {
-    "tank": "cd src/base/starter && yarn && yarn run dev"   
+    "start": "cd src/base/starter && yarn && yarn run dev"
   },
   "repository": {
     "type": "git",

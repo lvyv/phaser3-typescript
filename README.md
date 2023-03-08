@@ -18,7 +18,7 @@
 git clone https://github.com/lvyv/phaser3-typescript.git
 npm install -g yarn
 npm install
-npm run tank
+npm run start
 ```
 
 ## 
