@@ -1,11 +1,10 @@
 {
-  "name": "zxk-mapf",
+  "name": "tank",
   "version": "2.0.0",
-  "description": "MAPF simulator for Phaser 3 in TypeScript",
+  "description": "Tank for Phaser 3 in TypeScript",
   "keywords": [],
   "devDependencies": {
     "expose-loader": "4.0.0",
-    "html-webpack-plugin": "^5.5.0",
     "ts-loader": "9.3.1",
     "typescript": "4.8.0-dev.20220730",
     "webpack": "5.74.0",

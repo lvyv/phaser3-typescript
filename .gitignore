@@ -6,7 +6,3 @@ node_modules/
 
 # Files
 .DS_STORE
-
-# Map
-map3.json
-map-tileset.png

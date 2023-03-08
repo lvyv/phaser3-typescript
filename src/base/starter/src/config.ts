@@ -3,14 +3,16 @@ import { GameScene } from './scenes/game-scene';
 import { MenuScene } from './scenes/menu-scene';
 
 export const GameConfig: Phaser.Types.Core.GameConfig = {
-  title: 'MAPF',
-  url: 'https://github.com/lvyv/phaser3-typescript',
+  title: 'Tank',
+  url: 'https://github.com/digitsensitive/phaser3-typescript',
   version: '2.0',
-  width: 1920,
-  height: 1080,
-  zoom: 1,
   type: Phaser.AUTO,
-  parent: 'simulator',
+  width: 820,
+  height: 820,
+  // zoom: 0.6,
+  parent: 'game',
+  pixelArt: true,
+  backgroundColor: '#000000',
   scene: [BootScene, MenuScene, GameScene],
   input: {
     keyboard: true
@@ -22,6 +24,5 @@ export const GameConfig: Phaser.Types.Core.GameConfig = {
       debug: false
     }
   },
-  backgroundColor: '#464f2c',
   render: { pixelArt: false, antialias: true }
 };
